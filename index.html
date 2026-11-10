@@ -1808,7 +1808,7 @@ const ACT = {
   openTeam(el) { S.teamId = el.dataset.team; location.hash = "meet"; if (S.route === "meet") render(); return false; },
   share(el) { const s = T().shared; s.has(el.dataset.id) ? s.delete(el.dataset.id) : s.add(el.dataset.id); },
   numToIssue(el) { practiceFlags.numToIssue = true; const n = T().numbers.find((x) => x.id === el.dataset.id); addIssue(`${n.name} off goal: ${fmt(n.vals[12], n.unit)} vs ${fmt(n.goal, n.unit)}`, n.owner); },
-  priStatus(el) { T().priorities.find((p) => p.id === el.dataset.id).status = el.dataset.s; },
+  priStatus(el) { (S.route === "company" ? S.teams.lead : T()).priorities.find((p) => p.id === el.dataset.id).status = el.dataset.s; },
   priToIssue(el) { const p = T().priorities.find((x) => x.id === el.dataset.id); addIssue(`${p.title} is off track`, p.owner); },
   hlToIssue(el) { const h = T().headlines.find((x) => x.id === el.dataset.id); addIssue(h.text, T().lead); },
   toggleTodo(el) { const x = T().todos.find((y) => y.id === el.dataset.id); x.done = !x.done; },
